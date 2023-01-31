@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import Header from './components/Header'
-//import FeedbackItem from './components/FeedbackItem'
-import FeedbackList from './components/FeedbackList'
+import React, { useState } from 'react';
+import Header from './components/Header';
+//import FeedbackItem from './components/FeedbackItem';
+import FeedbackList from './components/FeedbackList';
+import FeedbackStats from './components/FeedbackStats';
 import FeedbackData from './data/FeedbackData';
 
 
@@ -18,6 +19,7 @@ function App() {
         <>
             <Header text="Prop text testing..." />
             <div className='container'>
+                <FeedbackStats feedback={feedback} />
                 <FeedbackList feedback={feedback} handleDelete={ deleteFeedback } />
             </div>
         </>
