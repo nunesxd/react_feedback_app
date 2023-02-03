@@ -3,7 +3,7 @@ import RatingSelect from './RatingSelect';
 import Card from './shared/Card';
 import Button from './shared/Button';
 
-function FeedbackForm() {
+function FeedbackForm({ handleAdd }) {
     const [text, setText] = useState( '' );
     const [rating, setRating] = useState( 10 );
     const [btnDisabled, setBtnDisabled] = useState( true );
@@ -24,9 +24,26 @@ function FeedbackForm() {
         setText(event.target.value);
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if(text.trim().length > 10) {
+            // Não é necessário explicitar os valores dos atributos do objeto, uma vez que o nome destes são iguais as das variáveis.
+            const newFeedback = {
+                text,
+                rating
+            }
+
+            handleAdd(newFeedback);
+
+            // Reset do campo texto:
+            setText('');
+        }
+    };
+
     return (
         <Card>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <h4>How would you rate this site ?</h4>
 
                 <RatingSelect select={ (rating) => setRating(rating) } />
