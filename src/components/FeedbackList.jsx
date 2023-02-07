@@ -1,8 +1,14 @@
-import React from 'react'
+import { useContext, React } from 'react'
 import FeedbackItem from './FeedbackItem'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
+import FeedbackContext from '../context/FeedbackContext'
 
-function FeedbackList({feedback, handleDelete}) {
+
+// Função antiga, quando passavamos os argumentos por 'props':
+// function FeedbackList({feedback, handleDelete}) {
+function FeedbackList({handleDelete}) {
+    const {feedback} = useContext(FeedbackContext);
+    
     if(!feedback || feedback.length === 0) {
         return <p>No Feedback received</p>
     }
@@ -16,15 +22,16 @@ function FeedbackList({feedback, handleDelete}) {
     )
 }
 
-FeedbackList.propTypes = {
-    // feedback: PropTypes.array,
-    feedback: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            text: PropTypes.string.isRequired,
-            rating: PropTypes.number.isRequired
-        })
-    ),
-  }
+// Não é mais necessário, visto que agora estamos usando o conceito de 'context':
+// FeedbackList.propTypes = {
+//     // feedback: PropTypes.array,
+//     feedback: PropTypes.arrayOf(
+//         PropTypes.shape({
+//             id: PropTypes.number.isRequired,
+//             text: PropTypes.string.isRequired,
+//             rating: PropTypes.number.isRequired
+//         })
+//     ),
+//   }
 
 export default FeedbackList

@@ -35,8 +35,13 @@ function App() {
                             <Header text="Prop text testing..." />
                             <div className='container'>
                                 <FeedbackForm handleAdd={ addFeedback }/>
+                                <FeedbackStats />
+                                <FeedbackList handleDelete={ deleteFeedback } />
+
+                                {/* Não é mais necessário passarmos os dados e funções por 'props', pois os estamos fazendo por 'context', dentro dos respectivos componentes:
+                                <FeedbackForm handleAdd={ addFeedback }/>
                                 <FeedbackStats feedback={ feedback } />
-                                <FeedbackList feedback={ feedback } handleDelete={ deleteFeedback } />
+                                <FeedbackList feedback={ feedback } handleDelete={ deleteFeedback } /> */}
                             </div>
 
                             <AboutIconLink />

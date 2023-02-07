@@ -1,8 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import { useContext, React } from 'react'
+// import PropTypes from 'prop-types'
+import FeedbackContext from '../context/FeedbackContext'
 
 
-function FeedbackStats({ feedback }) {
+// function FeedbackStats({ feedback }) {
+function FeedbackStats() {
+    const {feedback} = useContext(FeedbackContext);
+
     // Calculo da média das avaliações:
     let avg = feedback.reduce( (acc, cur) => {
         return acc + cur.rating;
@@ -19,14 +23,14 @@ function FeedbackStats({ feedback }) {
     )
 }
 
-FeedbackStats.propTypes = {
-    feedback: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            text: PropTypes.string.isRequired,
-            rating: PropTypes.number.isRequired
-        })
-    ),
-  }
+// FeedbackStats.propTypes = {
+//     feedback: PropTypes.arrayOf(
+//         PropTypes.shape({
+//             id: PropTypes.number.isRequired,
+//             text: PropTypes.string.isRequired,
+//             rating: PropTypes.number.isRequired
+//         })
+//     ),
+//   }
 
 export default FeedbackStats
