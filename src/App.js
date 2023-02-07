@@ -9,6 +9,7 @@ import FeedbackStats from './components/FeedbackStats';
 import FeedbackForm from './components/FeedbackForm';
 import FeedbackData from './data/FeedbackData';
 import AboutPage from './pages/AboutPage';
+import {FeedbackProvider} from './context/FeedbackContext';
 
 
 function App() {
@@ -26,29 +27,31 @@ function App() {
     }
 
     return (
-        <Router>
-            <Routes>
-                <Route exact path='/' element={
-                    <>
-                        <Header text="Prop text testing..." />
-                        <div className='container'>
-                            <FeedbackForm handleAdd={ addFeedback }/>
-                            <FeedbackStats feedback={ feedback } />
-                            <FeedbackList feedback={ feedback } handleDelete={ deleteFeedback } />
-                        </div>
+        <FeedbackProvider>
+            <Router>
+                <Routes>
+                    <Route exact path='/' element={
+                        <>
+                            <Header text="Prop text testing..." />
+                            <div className='container'>
+                                <FeedbackForm handleAdd={ addFeedback }/>
+                                <FeedbackStats feedback={ feedback } />
+                                <FeedbackList feedback={ feedback } handleDelete={ deleteFeedback } />
+                            </div>
 
-                        <AboutIconLink />
-                    </>
-                } />
-                
-                <Route path='/about' element={ 
-                    <>
-                        <AboutPage />
-                    </>
-                } />
+                            <AboutIconLink />
+                        </>
+                    } />
+                    
+                    <Route path='/about' element={ 
+                        <>
+                            <AboutPage />
+                        </>
+                    } />
 
-            </Routes>
-        </Router>
+                </Routes>
+            </Router>
+        </FeedbackProvider>
     )
 }
 
