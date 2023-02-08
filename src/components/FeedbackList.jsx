@@ -6,7 +6,7 @@ import FeedbackContext from '../context/FeedbackContext'
 
 // Função antiga, quando passavamos os argumentos por 'props':
 // function FeedbackList({feedback, handleDelete}) {
-function FeedbackList({handleDelete}) {
+function FeedbackList() {
     const {feedback} = useContext(FeedbackContext);
     
     if(!feedback || feedback.length === 0) {
@@ -16,9 +16,11 @@ function FeedbackList({handleDelete}) {
     return (
         <div className='feedback-list'>
             {feedback.map( (item) => (
-                <FeedbackItem key={item.key} item={item} handleDelete={ handleDelete } />
+                <FeedbackItem key={item.key} item={item} />
             ) )}
         </div>
+        // Com o context gerado, agora iremos realizar os procedimentos de CRUD diretamente pelo item.
+        // handleDelete={ handleDelete }
     )
 }
 

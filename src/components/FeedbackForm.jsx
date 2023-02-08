@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import RatingSelect from './RatingSelect';
 import Card from './shared/Card';
 import Button from './shared/Button';
+import FeedbackContext from '../context/FeedbackContext'
 
-function FeedbackForm({ handleAdd }) {
+
+// Função antiga, quando passavamos os argumentos por 'props':
+// function FeedbackForm({ handleAdd }) {
+function FeedbackForm() {
     const [text, setText] = useState( '' );
     const [rating, setRating] = useState( 10 );
     const [btnDisabled, setBtnDisabled] = useState( true );
     const [message, setMessage] = useState( '' );
+
+    const {addFeedback} = useContext(FeedbackContext);
 
     const handleTextChange = (event) => {
         if(text === '') {
@@ -34,7 +40,7 @@ function FeedbackForm({ handleAdd }) {
                 rating
             }
 
-            handleAdd(newFeedback);
+            addFeedback(newFeedback);
 
             // Reset do campo texto:
             setText('');
