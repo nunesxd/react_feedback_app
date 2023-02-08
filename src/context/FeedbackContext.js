@@ -1,6 +1,7 @@
 import { createContext, useState, React } from "react"
 import { v4 as uuidv4 } from 'uuid'
 
+
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({children}) => {
@@ -51,7 +52,8 @@ export const FeedbackProvider = ({children}) => {
     feedback,
     deleteFeedback,
     addFeedback,
-    editFeedback
+    editFeedback,
+    feedbackEdit,
   }}>
     { children }
   </FeedbackContext.Provider>

@@ -1,7 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import FeedbackContext from '../context/FeedbackContext'
+
 
 function RatingSelect({ select }) {
     const [selected, setSelected] = useState( 10 );
+
+    const { feedbackEdit } = useContext(FeedbackContext);
+
+    useEffect(() => {
+      // Verifica se clicamos em algum item para edição, caso não, carrega apenas a página.
+      if(feedbackEdit.edit === true) {
+          setSelected(feedbackEdit.item.rating);
+      }
+    }, [feedbackEdit]);
 
     const handleChange = (event) => {
         setSelected(+event.target.value);

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import RatingSelect from './RatingSelect';
 import Card from './shared/Card';
 import Button from './shared/Button';
@@ -13,7 +13,16 @@ function FeedbackForm() {
     const [btnDisabled, setBtnDisabled] = useState( true );
     const [message, setMessage] = useState( '' );
 
-    const {addFeedback} = useContext(FeedbackContext);
+    const { addFeedback, feedbackEdit } = useContext(FeedbackContext);
+
+    useEffect(() => {
+        // Verifica se clicamos em algum item para edição, caso não, carrega apenas a página.
+        if(feedbackEdit.edit === true) {
+            setBtnDisabled(false);
+            setText(feedbackEdit.item.text);
+            setRating(feedbackEdit.item.rating);
+        }
+    }, [feedbackEdit]);
 
     const handleTextChange = (event) => {
         if(text === '') {
