@@ -13,7 +13,7 @@ function FeedbackForm() {
     const [btnDisabled, setBtnDisabled] = useState( true );
     const [message, setMessage] = useState( '' );
 
-    const { addFeedback, feedbackEdit } = useContext(FeedbackContext);
+    const { addFeedback, feedbackEdit, updateFeedback } = useContext(FeedbackContext);
 
     useEffect(() => {
         // Verifica se clicamos em algum item para edição, caso não, carrega apenas a página.
@@ -49,7 +49,12 @@ function FeedbackForm() {
                 rating
             }
 
-            addFeedback(newFeedback);
+            if(feedbackEdit.edit === true) {
+                // Já que criamos um objeto com os novos valores, também podemos utilizá-lo para atualizar os valores de um feedback sendo editado.
+                updateFeedback(feedbackEdit.item.id, newFeedback);
+            } else {
+                addFeedback(newFeedback);
+            }
 
             // Reset do campo texto:
             setText('');
