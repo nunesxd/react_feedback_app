@@ -24,6 +24,10 @@ function FeedbackForm() {
         }
     }, [feedbackEdit]);
 
+    const fetchFeedback = async () => {
+        const response = await fetch('http://localhost:5000/feedback?_sort=id&_order=desc');
+    };
+
     const handleTextChange = (event) => {
         if(text === '') {
             setBtnDisabled(true);
