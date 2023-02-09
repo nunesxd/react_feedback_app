@@ -16,8 +16,8 @@
       "text": "This is the feedback item 3, coming from the JSON Server backend"
     },
     {
-      "rating": "7",
       "text": "This is a POST Request done in Postman",
+      "rating": 7,
       "id": 4
     }
   ]

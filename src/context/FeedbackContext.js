@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid'
 const FeedbackContext = createContext();
 
 export const FeedbackProvider = ({children}) => {
-  const [feedback, setFeedback] = useState(true);
-  const [isLoading, setIsLoading] = useState([]);
+  const [feedback, setFeedback] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [feedbackEdit, setFeedbackEdit] = useState(
     {
